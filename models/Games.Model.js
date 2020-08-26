@@ -1,6 +1,10 @@
 const { Schema, model } = require('mongoose');
 
 const gameSchema = new Schema({
+  category: {
+    type: String,
+    required: true
+  },
     creator: {
       type: ObjectId,
       required: true
@@ -9,13 +13,12 @@ const gameSchema = new Schema({
       type: String,
       required: true, 
     },
-    Description: {
+    description: {
       type: String, 
       required: true,
     },
     purpose: {
       type: String,
-      required: true
     },
     credit: String,
     video: String, 
