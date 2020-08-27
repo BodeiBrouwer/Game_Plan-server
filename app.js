@@ -80,6 +80,9 @@ app.locals.title = 'Express - Generated with IronGenerator';
 const gameRoutes = require('./routes/game.routes');
 app.use('/api', gameRoutes);
 
+const trainingRoutes = require('./routes/training.routes');
+app.use('/api', trainingRoutes);
+
 const authRoutes = require('./routes/auth.routes')
 app.use('/api', authRoutes)
 
