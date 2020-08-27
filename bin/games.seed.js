@@ -1,13 +1,11 @@
 require('dotenv').config();
-require('../config/db.config')
+// require('../config/db.config')
 const mongoose = require('mongoose');
-const app = require('../app');
 const GamesModel = require ('../models/Games.Model')
 
 let games = [
   {
     category: 'Exercise',
-    creator: 'Bodei',
     name: 'Morning gibberish',
     description: 'Practice gibberish by explaining your morning routine in gibberish...',
     purpose: 'Better physicality and gibberish',
@@ -15,7 +13,6 @@ let games = [
     },
     {
     category: 'Warm-up',
-    creator: 'Jelle',
     name: 'Diamond dance',
     description: 'Follow the leader and dance in sync',
     purpose: 'Bluff',
@@ -23,7 +20,6 @@ let games = [
     },
     {
     category: 'Scenes',
-    creator: 'Latara',
     name: '3-line scenes',
     description: 'Play 2-person, 3-line scenes in which who, what where gets established',
     purpose: 'Endowment',
@@ -46,7 +42,7 @@ function seedGames(){
 }
 
 mongoose
-  .connect(`${MONGODB_URI}`, {useNewUrlParser: true})
+  .connect(`$mongodb://localhost:27017/game-plan`, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
     seedGames()
