@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const trainingSchema = new Schema({
     creator: {
-      type: ObjectId,
+      type: Schema.Types.ObjectId,
       required: true
     },
     name: {

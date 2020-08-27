@@ -5,10 +5,7 @@ const gameSchema = new Schema({
     type: String,
     required: true
   },
-    creator: {
-      type: ObjectId,
-      required: true
-    },
+    creator: Schema.Types.ObjectId,
     name: {
       type: String,
       required: true, 
