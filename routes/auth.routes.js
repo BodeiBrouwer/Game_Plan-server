@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs');
-
-
 const UserModel = require('../models/User.model');
 
 const { isLoggedIn } = require('../helpers/auth-helper'); // to check if user is loggedIn
@@ -127,9 +125,8 @@ router.post('/login', (req, res) => {
 });
  
 router.get('/logout', (req, res) => {
-  req.session.destroy((err) => {
-    res.redirect("/");
-  });
+  req.session.destroy() 
+  res.status(204).send()
 })
 
 router.get("/user", isLoggedIn, (req, res, next) => {
