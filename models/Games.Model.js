@@ -19,8 +19,11 @@ const gameSchema = new Schema({
     },
     credit: String,
     video: String, 
-    tags: Array
-  }
-);
+    tags: Array,
+    likes: {
+      type: Number,
+      default: 0
+    }
+});
 
  module.exports = model('Game', gameSchema);

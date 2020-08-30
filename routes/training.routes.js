@@ -45,6 +45,34 @@ router.get('/trainings/:id', isLoggedIn, (req, res) => {
       }) 
  })
 
+router.delete('/trainings/:id', isLoggedIn, (req, res) => {
+  TrainingModel.findByIdAndDelete(req.params.id)
+    .then((response) => {
+      res.status(200).json(response)
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: 'Something went wrong',
+        message: err
+      })
+    })  
+})
+
+router.patch('/trainings/:id', isLoggedIn, (req, res) => {
+  let id = req.params.id
+  const {name, duration, description, notes} = req.body;
+  TrainingModel.findByIdAndUpdate(id, {$set: {name: name, description: description, duration: duration, notes: notes}})
+        .then((response) => {
+             res.status(200).json(response)
+        })
+        .catch((err) => {
+             console.log(err)
+             res.status(500).json({
+                  error: 'Something went wrong',
+                  message: err
+             })
+        }) 
+})
 
 
 
