@@ -5,9 +5,9 @@ let TrainingModel = require('../models/Training.Model')
 const { isLoggedIn } = require('../helpers/auth-helper');
 
 router.get('/trainings', isLoggedIn, (req, res) => {
-  TrainingModel.find()
+  TrainingModel.find({creator: req.session.loggedInUser._id})
           .then((trainings) => {
-               res.status(200).json(trainings)
+              res.status(200).json(trainings)
           })
           .catch((err) => {
                res.status(500).json({
@@ -19,7 +19,7 @@ router.get('/trainings', isLoggedIn, (req, res) => {
 
 router.post('/trainings/create', isLoggedIn, (req, res) => {
   const {name, description, duration, notes} = req.body;
-    TrainingModel.create({name, description, duration, notes})
+    TrainingModel.create({name, description, duration, notes, creator: req.session.loggedInUser._id})
           .then((response) => {
                res.status(200).json(response)
           })
@@ -32,7 +32,6 @@ router.post('/trainings/create', isLoggedIn, (req, res) => {
 })
 
 router.get('/trainings/:id', isLoggedIn, (req, res) => {
-     console.log(req.params.id)
      TrainingModel.findById(req.params.id)
       .then((response) => {
            res.status(200).json(response)

@@ -15,7 +15,6 @@ const userSchema = new Schema({
       required: true,
       minlength: 6
     },
-    trainings: Array
   },
   {
     timestamps: true

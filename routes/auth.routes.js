@@ -7,7 +7,6 @@ const { isLoggedIn } = require('../helpers/auth-helper'); // to check if user is
 
 router.post('/signup', (req, res) => {
     const {username, email, password } = req.body;
-    console.log(username, email, password);
  
     if (!username || !email || !password) {
         res.status(500)
@@ -37,14 +36,12 @@ router.post('/signup', (req, res) => {
 
     bcrypt.genSalt(12)
       .then((salt) => {
-        console.log('Salt: ', salt);
         bcrypt.hash(password, salt)
           .then((passwordHash) => {
             UserModel.create({email, username, passwordHash})
               .then((user) => {
                 user.passwordHash = "***";
                 req.session.loggedInUser = user;
-                console.log(req.session)
                 res.status(200).json(user);
               })
               .catch((err) => {
@@ -95,7 +92,6 @@ router.post('/login', (req, res) => {
                   // req.session is the special object that is available to you
                   userData.passwordHash = "***";
                   req.session.loggedInUser = userData;
-                  console.log('Signin', req.session)
                   res.status(200).json(userData)
                 }
                 //if passwords do not match

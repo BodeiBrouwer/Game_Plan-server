@@ -20,7 +20,7 @@ router.get('/games', isLoggedIn, (req, res) => {
 
 router.post('/games/create', isLoggedIn, (req, res) => {
   const {category, name, description, purpose, credit, video} = req.body;
-    GameModel.create({category, name, description, purpose, credit, video})
+    GameModel.create({category, name, description, purpose, credit, video, creator: req.session.loggedInUser._id})
           .then((response) => {
                res.status(200).json(response)
           })
@@ -77,18 +77,26 @@ router.patch('/games/:id', isLoggedIn, (req, res) => {
 
 router.patch('/games/:id/like', isLoggedIn, (req, res) => {
   let id = req.params.id
-  const {likes} = req.body;
-  GamesModel.findByIdAndUpdate(id, {$set: {likes: likes}})
-        .then((response) => {
-             res.status(200).json(response)
-        })
-        .catch((err) => {
-             console.log(err)
-             res.status(500).json({
-                  error: 'Something went wrong',
-                  message: err
-             })
-        }) 
+  let user = req.session.loggedInUser._id
+  GamesModel.findById(id)
+    .then((game) => {
+      console.log(`this is the user`,user)
+      if(game.likes.includes(user)){
+        GamesModel.findByIdAndUpdate(id, {$pull: {likes: req.session.loggedInUser._id}})
+      } else {
+        GamesModel.findByIdAndUpdate(id, {$push: {likes: req.session.loggedInUser._id}})
+      }
+    })
+      .then((response) => {
+        res.status(200).json(response)
+      })
+    .catch((err) => {
+      console.log(err)
+      res.status(500).json({
+        error: 'Something went wrong',
+        message: err
+      })
+   })      
 })
 
 
