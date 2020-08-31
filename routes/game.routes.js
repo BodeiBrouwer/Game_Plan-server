@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 let GameModel = require('../models/Games.Model')
+let TrainingModel = require('../models/Training.Model')
 
 const { isLoggedIn } = require('../helpers/auth-helper');
 const GamesModel = require('../models/Games.Model');
@@ -99,5 +100,20 @@ router.patch('/games/:id/like', isLoggedIn, (req, res) => {
    })      
 })
 
-
+router.patch('/games/:trainingId/:gameId/add', isLoggedIn, (req, res) => {
+  let trainingId = req.params.trainingId
+  let gameId = req.params.gameId
+  console.log(req.body)
+  TrainingModel.findByIdAndUpdate(trainingId, {$push: {games: gameId }})
+        .then((response) => {
+             res.status(200).json(response)
+        })
+        .catch((err) => {
+             console.log(err)
+             res.status(500).json({
+                  error: 'Something went wrong',
+                  message: err
+             })
+        }) 
+})
 module.exports = router

@@ -11,7 +11,7 @@ const trainingSchema = new Schema({
     },
     duration: Number,
     notes: String,
-    games: Array 
+    games: [Schema.Types.ObjectId] 
   }
 );
 
