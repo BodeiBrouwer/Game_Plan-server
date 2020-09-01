@@ -81,23 +81,36 @@ router.patch('/games/:id/like', isLoggedIn, (req, res) => {
   let user = req.session.loggedInUser._id
   GamesModel.findById(id)
     .then((game) => {
-      console.log(`this is the user`,user)
+      console.log(game.likes)
+      console.log(game.likes.includes(user))
       if(game.likes.includes(user)){
-        GamesModel.findByIdAndUpdate(id, {$pull: {likes: req.session.loggedInUser._id}})
+        GamesModel.findByIdAndUpdate(id, {$pull: {likes: user}}, {'new':true})
+        .then((response) => {
+          console.log(response)
+          res.status(200).json(response)
+        })
+      .catch((err) => {
+        console.log(err)
+        res.status(500).json({
+          error: 'Something went wrong',
+          message: err
+        })
+     }) 
       } else {
-        GamesModel.findByIdAndUpdate(id, {$push: {likes: req.session.loggedInUser._id}})
+        GamesModel.findByIdAndUpdate(id, {$push: {likes: user}}, {'new':true})
+        .then((response) => {
+          console.log(response)
+          res.status(200).json(response)
+        })
+      .catch((err) => {
+        console.log(err)
+        res.status(500).json({
+          error: 'Something went wrong',
+          message: err
+        })
+     }) 
       }
     })
-      .then((response) => {
-        res.status(200).json(response)
-      })
-    .catch((err) => {
-      console.log(err)
-      res.status(500).json({
-        error: 'Something went wrong',
-        message: err
-      })
-   })      
 })
 
 router.patch('/games/:trainingId/:gameId/add', isLoggedIn, (req, res) => {
