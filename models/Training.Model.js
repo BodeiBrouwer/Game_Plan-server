@@ -3,7 +3,8 @@ const { Schema, model } = require('mongoose');
 const trainingSchema = new Schema({
     creator: {
       type: Schema.Types.ObjectId,
-      required: true
+      required: true,
+      ref: "User"
     },
     name: {
       type: String,
@@ -11,7 +12,10 @@ const trainingSchema = new Schema({
     },
     duration: Number,
     notes: String,
-    games: [Schema.Types.ObjectId] 
+    games: [{
+        type: Schema.Types.ObjectId,
+        ref: "Game"
+      }] 
   }
 );
 

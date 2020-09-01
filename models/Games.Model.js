@@ -5,7 +5,10 @@ const gameSchema = new Schema({
     type: String,
     required: true
   },
-    creator: Schema.Types.ObjectId,
+    creator: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    },
     name: {
       type: String,
       required: true, 
@@ -20,7 +23,10 @@ const gameSchema = new Schema({
     credit: String,
     video: String, 
     tags: Array,
-    likes: [Schema.Types.ObjectId]
+    likes: [{
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    }]
 });
 
  module.exports = model('Game', gameSchema);

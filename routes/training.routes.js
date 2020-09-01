@@ -33,6 +33,7 @@ router.post('/trainings/create', isLoggedIn, (req, res) => {
 
 router.get('/trainings/:id', isLoggedIn, (req, res) => {
      TrainingModel.findById(req.params.id)
+      .populate('games')
       .then((response) => {
            res.status(200).json(response)
       })
