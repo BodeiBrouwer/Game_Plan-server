@@ -24,7 +24,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ["https://gameplan-improv.herokuapp.com"],
+    origin: ['http://localhost:3000', "https://gameplan-improv.herokuapp.com"],
   })
 );
 
