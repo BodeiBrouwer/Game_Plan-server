@@ -6,15 +6,16 @@ const { isLoggedIn } = require('../helpers/auth-helper');
 
 router.get('/trainings', isLoggedIn, (req, res) => {
   TrainingModel.find({creator: req.session.loggedInUser._id})
-          .then((trainings) => {
-              res.status(200).json(trainings)
-          })
-          .catch((err) => {
-               res.status(500).json({
-                    error: 'Something went wrong',
-                    message: err
-               })
-     })         
+    .then((trainings) => {
+      console.log('trainings:', trainings)
+      res.status(200).json(trainings)
+    })
+    .catch((err) => {
+      res.status(500).json({
+      error: 'Something went wrong',
+      message: err
+      })
+    })         
 })
 
 router.post('/trainings/create', isLoggedIn, (req, res) => {
