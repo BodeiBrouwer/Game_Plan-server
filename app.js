@@ -24,7 +24,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.PUBLIC_DOMAIN, "https://backlog-quest.herokuapp.com"],
+    origin: ["https://gameplan-improv.herokuapp.com"],
   })
 );
 
