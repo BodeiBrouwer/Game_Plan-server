@@ -129,4 +129,20 @@ router.patch('/games/:trainingId/:gameId/add', isLoggedIn, (req, res) => {
              })
         }) 
 })
+
+router.patch('/games/:trainingId/:gameId/delete', isLoggedIn, (req, res) => {
+  let trainingId = req.params.trainingId
+  let gameId = req.params.gameId
+  TrainingModel.findByIdAndUpdate(trainingId, {$pull: {games: gameId }})
+        .then((response) => {
+             res.status(200).json(response)
+        })
+        .catch((err) => {
+             console.log(err)
+             res.status(500).json({
+                  error: 'Something went wrong',
+                  message: err
+             })
+        }) 
+})
 module.exports = router

@@ -7,7 +7,6 @@ const { isLoggedIn } = require('../helpers/auth-helper');
 router.get('/trainings', isLoggedIn, (req, res) => {
   TrainingModel.find({creator: req.session.loggedInUser._id})
     .then((trainings) => {
-      console.log('trainings:', trainings)
       res.status(200).json(trainings)
     })
     .catch((err) => {
