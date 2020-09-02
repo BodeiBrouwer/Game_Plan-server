@@ -8,15 +8,16 @@ const GamesModel = require('../models/Games.Model');
 
 router.get('/games', isLoggedIn, (req, res) => {
      GameModel.find()
-          .then((games) => {
-               res.status(200).json(games)
-          })
-          .catch((err) => {
-               res.status(500).json({
-                    error: 'Something went wrong',
-                    message: err
-               })
-     })         
+      .populate('User')
+        .then((games) => {
+          res.status(200).json(games)
+        })
+        .catch((err) => {
+          res.status(500).json({
+          error: 'Something went wrong',
+          message: err
+        })
+        })         
 })
 
 router.post('/games/create', isLoggedIn, (req, res) => {
@@ -116,7 +117,6 @@ router.patch('/games/:id/like', isLoggedIn, (req, res) => {
 router.patch('/games/:trainingId/:gameId/add', isLoggedIn, (req, res) => {
   let trainingId = req.params.trainingId
   let gameId = req.params.gameId
-  console.log(req.body)
   TrainingModel.findByIdAndUpdate(trainingId, {$push: {games: gameId }})
         .then((response) => {
              res.status(200).json(response)
