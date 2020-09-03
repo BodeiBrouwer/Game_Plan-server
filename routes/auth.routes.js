@@ -20,7 +20,7 @@ router.post('/signup', (req, res) => {
     if (!myRegex.test(email)) {
         res.status(500)
           .json({
-            errorMessage: 'Email format not correct'
+            errorMessage: 'That\'s not even an email address'
         });
         return;  
     }
@@ -29,7 +29,7 @@ router.post('/signup', (req, res) => {
     if (!myPassRegex.test(password)) {
       res.status(500)
           .json({
-            errorMessage: 'Password must be between 6 and 20 characters and must contain at least one number'
+            errorMessage: 'Can I have a word of 6-20 character and at least 1 number?'
           });
         return;  
     }
@@ -48,7 +48,7 @@ router.post('/signup', (req, res) => {
                 if (err.code === 11000) {
                   res.status(500)
                   .json({
-                    errorMessage: 'username or email entered already exists!'
+                    errorMessage: 'You\'ve already endowed me with that email or username!'
                   });
                   return;  
                 } 
@@ -69,14 +69,14 @@ router.post('/login', (req, res) => {
     const {email, password } = req.body;
     if ( !email || !password) {
         res.status(500).json({
-            error: 'Please enter Username. email and password',
+            error: 'From the audience, can I have an email and password, please?',
        })
       return;  
     }
     const myRegex = new RegExp(/^[a-z0-9](?!.*?[^\na-z0-9]{2})[^\s@]+@[^\s@]+\.[^\s@]+[a-z0-9]$/);
     if (!myRegex.test(email)) {
         res.status(500).json({
-            error: 'That does not seem to be an email address',
+            error: 'Don\'t mean to block but: that\'s not an email address',
         })
         return;  
     }
@@ -97,14 +97,14 @@ router.post('/login', (req, res) => {
                 //if passwords do not match
                 else {
                     res.status(500).json({
-                        error: 'Passwords don\'t match',
+                        error: 'This is gibberish to me, I don\'t know that password',
                     })
                   return; 
                 }
             })
             .catch(() => {
                 res.status(500).json({
-                    error: 'I don\'t mean to block but: no, that is not an email address',
+                    error: 'Have we even met? I don\'t know that email',
                 })
               return; 
             });
