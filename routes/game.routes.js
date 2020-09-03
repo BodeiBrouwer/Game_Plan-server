@@ -8,7 +8,7 @@ const GamesModel = require('../models/Games.Model');
 
 router.get('/games', isLoggedIn, (req, res) => {
      GameModel.find()
-      .populate('User')
+      .populate('creator')
         .then((games) => {
           res.status(200).json(games)
         })
