@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.a0ffdbb4.chunk.css",
-    "main.js": "/static/js/main.9cb38205.chunk.js",
-    "main.js.map": "/static/js/main.9cb38205.chunk.js.map",
+    "main.css": "/static/css/main.9a1e9cff.chunk.css",
+    "main.js": "/static/js/main.1c16621d.chunk.js",
+    "main.js.map": "/static/js/main.1c16621d.chunk.js.map",
     "reactPlayerDailyMotion.js": "/static/js/reactPlayerDailyMotion.87fbec43.chunk.js",
     "reactPlayerDailyMotion.js.map": "/static/js/reactPlayerDailyMotion.87fbec43.chunk.js.map",
     "reactPlayerFacebook.js": "/static/js/reactPlayerFacebook.74861c25.chunk.js",
@@ -33,10 +33,10 @@
     "static/js/14.9f81f7e8.chunk.js": "/static/js/14.9f81f7e8.chunk.js",
     "static/js/14.9f81f7e8.chunk.js.map": "/static/js/14.9f81f7e8.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.28b44fc393e33ccd46543dd5e268f26f.js": "/precache-manifest.28b44fc393e33ccd46543dd5e268f26f.js",
+    "precache-manifest.c7b6e7aadeace2b7d85a76080e533a6f.js": "/precache-manifest.c7b6e7aadeace2b7d85a76080e533a6f.js",
     "service-worker.js": "/service-worker.js",
     "static/css/14.f3cffc9e.chunk.css.map": "/static/css/14.f3cffc9e.chunk.css.map",
-    "static/css/main.a0ffdbb4.chunk.css.map": "/static/css/main.a0ffdbb4.chunk.css.map",
+    "static/css/main.9a1e9cff.chunk.css.map": "/static/css/main.9a1e9cff.chunk.css.map",
     "static/js/14.9f81f7e8.chunk.js.LICENSE.txt": "/static/js/14.9f81f7e8.chunk.js.LICENSE.txt",
     "static/media/Game-Plan-logo.png": "/static/media/Game-Plan-logo.2513166d.png",
     "static/media/festive-pineapple.png": "/static/media/festive-pineapple.136fc483.png",
@@ -48,7 +48,7 @@
     "static/js/runtime-main.4258d72f.js",
     "static/css/14.f3cffc9e.chunk.css",
     "static/js/14.9f81f7e8.chunk.js",
-    "static/css/main.a0ffdbb4.chunk.css",
-    "static/js/main.9cb38205.chunk.js"
+    "static/css/main.9a1e9cff.chunk.css",
+    "static/js/main.1c16621d.chunk.js"
   ]
 }
