@@ -4,7 +4,6 @@ let GameModel = require('../models/Games.Model')
 let TrainingModel = require('../models/Training.Model')
 
 const { isLoggedIn } = require('../helpers/auth-helper');
-const GamesModel = require('../models/Games.Model');
 
 router.get('/games', isLoggedIn, (req, res) => {
      GameModel.find()
