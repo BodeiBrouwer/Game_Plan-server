@@ -127,6 +127,7 @@ router.patch('/games/:trainingId/:gameId/add', isLoggedIn, (req, res) => {
 
 router.patch('/games/:trainingId/:gameId/delete', isLoggedIn, (req, res) => {
   let trainingId = req.params.trainingId
+  console.log(trainingId)
   let gameId = req.params.gameId
   TrainingModel.findByIdAndUpdate(trainingId, {$pull: {games: gameId }})
         .then((response) => {
