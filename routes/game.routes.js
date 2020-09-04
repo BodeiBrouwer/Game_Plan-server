@@ -81,12 +81,9 @@ router.patch('/games/:id/like', isLoggedIn, (req, res) => {
   let user = req.session.loggedInUser._id
   GamesModel.findById(id)
     .then((game) => {
-      console.log(game.likes)
-      console.log(game.likes.includes(user))
       if(game.likes.includes(user)){
         GamesModel.findByIdAndUpdate(id, {$pull: {likes: user}}, {'new':true})
         .then((response) => {
-          console.log(response)
           res.status(200).json(response)
         })
       .catch((err) => {
@@ -99,7 +96,6 @@ router.patch('/games/:id/like', isLoggedIn, (req, res) => {
       } else {
         GamesModel.findByIdAndUpdate(id, {$push: {likes: user}}, {'new':true})
         .then((response) => {
-          console.log(response)
           res.status(200).json(response)
         })
       .catch((err) => {
