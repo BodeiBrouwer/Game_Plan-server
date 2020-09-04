@@ -1,12 +1,12 @@
 const express = require('express');
 const router  = express.Router();
-let GameModel = require('../models/Games.Model')
+let GamesModel = require('../models/Games.Model')
 let TrainingModel = require('../models/Training.Model')
 
 const { isLoggedIn } = require('../helpers/auth-helper');
 
 router.get('/games', isLoggedIn, (req, res) => {
-     GameModel.find()
+     GamesModel.find()
       .populate('creator')
         .then((games) => {
           res.status(200).json(games)
@@ -21,7 +21,7 @@ router.get('/games', isLoggedIn, (req, res) => {
 
 router.post('/games/create', isLoggedIn, (req, res) => {
   const {category, name, description, purpose, credit, video} = req.body;
-    GameModel.create({category, name, description, purpose, credit, video, creator: req.session.loggedInUser._id})
+    GamesModel.create({category, name, description, purpose, credit, video, creator: req.session.loggedInUser._id})
           .then((response) => {
                res.status(200).json(response)
           })
@@ -35,7 +35,7 @@ router.post('/games/create', isLoggedIn, (req, res) => {
 })
 
 router.get('/games/:id', isLoggedIn, (req, res) => {
-  GameModel.findById(req.params.id)
+  GamesModel.findById(req.params.id)
     .then((response) => {
       res.status(200).json(response)
     })
@@ -48,7 +48,7 @@ router.get('/games/:id', isLoggedIn, (req, res) => {
  })
 
 router.delete('/games/:id', isLoggedIn, (req, res) => {
-  GameModel.findByIdAndDelete(req.params.id)
+  GamesModel.findByIdAndDelete(req.params.id)
     .then((response) => {
       res.status(200).json(response)
     })

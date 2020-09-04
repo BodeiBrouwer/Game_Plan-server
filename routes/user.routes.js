@@ -1,13 +1,13 @@
 const express = require('express');
 const router  = express.Router();
-let GameModel = require('../models/Games.Model')
+let GamesModel = require('../models/Games.Model')
 let UserModel = require('../models/User.Model')
 const { isLoggedIn } = require('../helpers/auth-helper');
 
 
 router.get('/user/:id', isLoggedIn, (req, res) => {
   let user = req.params.id
-     GameModel.find({creator: user})
+     GamesModel.find({creator: user})
      .populate('creator')
         .then((games) => {
           res.status(200).json(games)
